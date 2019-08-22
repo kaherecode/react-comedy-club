@@ -16,8 +16,8 @@ function Joke(props) {
 
 function App() {
   const [joke, setJoke] = useState({
-    setup: `What's the best thing about a Boolean?`,
-    punchline: `Even if you're wrong, you're only off by a bit.`
+    setup: ``,
+    punchline: ``
   });
 
   useEffect(() => {
@@ -27,13 +27,13 @@ function App() {
   function fetchJoke() {
     fetch("https://official-joke-api.appspot.com/jokes/programming/random")
       .then(resp => resp.json())
-      .then(data => console.log(data));
+      .then(data => setJoke(data[0]));
   }
 
   return (
     <div className="App">
       <Joke joke={joke} />
-      <Button />
+      <button onClick={() => fetchJoke()}>another one</button>
     </div>
   );
 }
